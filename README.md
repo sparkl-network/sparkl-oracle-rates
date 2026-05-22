@@ -1,6 +1,6 @@
 # sparkl-oracle-rates
 
-Off-chain DOT/USD price oracle for Sparkl. Fetches rates from public APIs (CoinGecko, Binance), aggregates with a median, and pushes to [`RateSetter`](https://github.com/sparkl-network/sparkl-solo/blob/main/contracts/src/RateSetter.sol) on a configurable interval.
+Off-chain DOT/USD price oracle for Sparkl. **Coding agents:** [AGENT.md](./AGENT.md). Fetches rates from public APIs (CoinGecko, Binance), aggregates with a median, and pushes to [`RateSetter`](https://github.com/sparkl-network/sparkl-solo/blob/main/contracts/src/RateSetter.sol) on a configurable interval.
 
 ## How it works
 
@@ -94,7 +94,7 @@ Rules for `ORACLE_PRIVATE_KEY`:
 
 - Must start with `0x` and be **64 hex digits** after the prefix (32 bytes).
 - Must be the key for the wallet configured as `RateSetter.updater`.
-- Loaded only from the environment at process start (`loadConfig()` reads `process.env`). For Docker, pass `--env-file .env` and keep the file out of images (use secrets in production).
+- Loaded at process start from `.env` via Node’s `--env-file` (`yarn dev` / `yarn start`). `loadConfig()` reads `process.env`; export vars manually if you run `node` without that flag. For Docker, pass `--env-file .env` and keep the file out of images (use secrets in production).
 
 **Security:** `.env` is gitignored. Do not log the key. Rotate by deploying a new updater address (`setUpdater`) and updating `.env`, then draining/removing the old key.
 
@@ -158,5 +158,6 @@ docker run --env-file .env sparkl-oracle-rates
 
 ## Related
 
+- **Agents:** [AGENT.md](./AGENT.md) — ecosystem, local stack, tests, contributing
 - Contract: `sparkl-solo/contracts/src/RateSetter.sol`
 - Paseo deploy: `sparkl-solo/contracts/script/DeployPaseo.s.sol`
