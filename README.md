@@ -1,6 +1,6 @@
 # sparkl-oracle-rates
 
-Off-chain DOT/USD price oracle for Sparkl. **Coding agents:** [AGENT.md](./AGENT.md). Fetches rates from public APIs (CoinGecko, Binance), aggregates with a median, and pushes to [`RateSetter`](https://github.com/sparkl-network/sparkl-solo/blob/main/contracts/src/RateSetter.sol) on a configurable interval.
+Off-chain DOT/USD price oracle for Sparkl. **Coding agents:** [AGENTS.md](./AGENTS.md). Fetches rates from public APIs (CoinGecko, Binance), aggregates with a median, and pushes to [`RateSetter`](https://github.com/sparkl-network/sparkl-solo/blob/main/contracts/src/RateSetter.sol) on a configurable interval.
 
 ## How it works
 
@@ -123,6 +123,14 @@ Dev (no build step):
 
 ```bash
 yarn dev
+
+yarn run v1.22.22
+$ node --env-file=.env --import tsx src/index.ts
+Health server listening on :8090/health
+Fetched DOT/USD: $1.3320 (sources: coingecko,binance)
+setRate tx confirmed: 0x7b32d15b2351ccb49e957c6354e97f77bea611476233e1ce945089f0a7b8e083 (block 7)
+Fetched DOT/USD: $1.3315 (sources: coingecko,binance)
+Rate within deviation threshold — skipping push
 ```
 
 Health check: `GET http://localhost:8090/health`
@@ -158,6 +166,6 @@ docker run --env-file .env sparkl-oracle-rates
 
 ## Related
 
-- **Agents:** [AGENT.md](./AGENT.md) — ecosystem, local stack, tests, contributing
+- **Agents:** [AGENTS.md](./AGENTS.md) — ecosystem, local stack, tests, contributing
 - Contract: `sparkl-solo/contracts/src/RateSetter.sol`
 - Paseo deploy: `sparkl-solo/contracts/script/DeployPaseo.s.sol`

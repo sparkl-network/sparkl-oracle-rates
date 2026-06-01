@@ -10,7 +10,7 @@ TypeScript service that fetches DOT/USD from public APIs (CoinGecko, Binance), a
 |------|----------------|
 | **sparkl-solo** | Defines `contracts/src/RateSetter.sol` and deploys it (`DeployLocal.s.sol`, `DeployPaseo.s.sol`) with `updater` = oracle wallet |
 | **sparkl-portal** | Does not run the oracle; escrow USDC↔DOT conversion on-chain consumes rates from `RateSetter` |
-| **Workspace** | [../AGENT.md](../AGENT.md) |
+| **Workspace** | [../AGENTS.md](../AGENTS.md) |
 
 ```text
 CoinGecko / Binance → sparkl-oracle-rates → RateSetter.setRate → SettlementEscrow (via oracle interface)
@@ -112,5 +112,5 @@ When adding tests, prefer **vitest** or **node:test** with mocked fetch + mocked
 ## Related documentation
 
 - **[README.md](./README.md)** — behavior, oracle wallet setup, Docker, deploy checklist
-- **[sparkl-solo/AGENT.md](https://github.com/sparkl-network/sparkl-solo/blob/main/AGENT.md)** — `launch-local.sh`, contract deploy
+- **[sparkl-solo/AGENTS.md](https://github.com/sparkl-network/sparkl-solo/blob/main/AGENTS.md)** — `launch-local.sh`, contract deploy
 - **Contract:** [RateSetter.sol](https://github.com/sparkl-network/sparkl-solo/blob/main/contracts/src/RateSetter.sol)
